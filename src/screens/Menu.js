@@ -54,7 +54,7 @@ const Menu = () => {
                 <FlatList
                     horizontal={true}
                     data={data}
-                    keyExtractor={(data, index) => index}
+                    keyExtractor={(data, index) => data.desc}
                     renderItem={({ item, index }) => {
                         return (
                             <View style={{ marginLeft: 20 }}>
@@ -67,7 +67,7 @@ const Menu = () => {
             <View style={{height: '65%'}}>
                 <FlatList
                     data={data}
-                    keyExtractor={(data, index) => index}
+                    keyExtractor={(data, index) => data.desc}
                     renderItem={({ item, index }) => {
                         return (
                             <View key={index} style={{ marginTop: 20 }}>

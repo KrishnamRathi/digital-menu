@@ -9,10 +9,10 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       {/* <LoginScreen/> */}
-      <SignupScreen/>
+      {/* <SignupScreen/> */}
       {/* <Text>hi</Text> */}
-//     <Menu/>
-      <StatusBar style="auto" />
+     <Menu/>
+      {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
   );
 }
