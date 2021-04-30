@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import LoginScreen from './src/screens/signIn/LoginScreen';
 import SignupScreen from './src/screens/signUp/SignupScreen';
 import Menu from './src/screens/Menu';
+import Home from './src/screens/Home';
 
 export default function App() {
   return (
@@ -11,7 +12,8 @@ export default function App() {
       {/* <LoginScreen/> */}
       {/* <SignupScreen/> */}
       {/* <Text>hi</Text> */}
-     <Menu/>
+     {/* <Menu/> */}
+     <Home/>
       {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
   );
