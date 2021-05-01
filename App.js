@@ -13,8 +13,8 @@ export default function App() {
       {/* <LoginScreen/> */}
       {/* <SignupScreen/> */}
       {/* <Text>hi</Text> */}
-     {/* <Menu/> */}
-     <Home/>
+     <Menu/>
+     {/* <Home/> */}
       {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
   );
