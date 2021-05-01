@@ -1,81 +1,42 @@
-import React, {PureComponent} from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    Linking,
-    View
-} from 'react-native';
-
-import { RNCamera } from 'react-native-camera';
+import React from 'react';
+import { useState } from 'react';
+import { Text, TouchableOpacity, View, Image } from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import { styles as common } from '../styles/common';
 
 
-class Home extends PureComponent {
-    render() {
-        return (
-            <View style={styles.container}>
-                <RNCamera
-                    ref={ref => {
-                        this.camera = ref;
-                    }}
-                    style={styles.preview}
-                    type={RNCamera.Constants.Type.back}
-                    flashMode={RNCamera.Constants.FlashMode.on}
-                    androidCameraPermissionOptions={{
-                        title: 'Permission to use camera',
-                        message: 'We need your permission to use your camera',
-                        buttonPositive: 'Ok',
-                        buttonNegative: 'Cancel',
-                    }}
-                    androidRecordAudioPermissionOptions={{
-                        title: 'Permission to use audio recording',
-                        message: 'We need your permission to use your audio',
-                        buttonPositive: 'Ok',
-                        buttonNegative: 'Cancel',
-                    }}
-                    onGoogleVisionBarcodesDetected={({ barcodes }) => {
-                        console.log(barcodes);
-                    }}
-                />
-                <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-                    <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-                        <Text style={{ fontSize: 14 }}> SNAP </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
-    }
+export default Home = () => {
+  const [view, setView] = useState(0);
+  const onSuccess = e => {
+    alert(e.data);
+  };
 
-    takePicture = async () => {
-        if (this.camera) {
-            const options = { quality: 0.5, base64: true };
-            const data = await this.camera.takePictureAsync(options);
-            console.log(data.uri);
-        }
-    };
+  if (view == 0)
+    return (
+      <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <Text style={common.fontSmallBold}>Click here to scan</Text>
+        <TouchableOpacity style={{ backgroundColor: '#F2A253', borderRadius: 10, width: 80, alignItems: 'center' }} onPress={() => setView(1)}>
+          <Text style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }}>+</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  else return <OpenScanner />
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'black',
-    },
-    preview: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    capture: {
-        flex: 0,
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        padding: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center',
-        margin: 20,
-    },
-});
-
-export default Home
+const OpenScanner = () => {
+  return (
+    <QRCodeScanner
+      onRead={(e) => onSuccess(e)}
+      showMarker={true}
+      markerStyle={{borderColor: 'red', borderRadius: 10}}
+      cameraStyle={{height: '100%'}}
+      topContent={
+        <View style={{width: '100%', zIndex: 1000}}>
+          <TouchableOpacity onPress={() => setView(0)} style={[{alignItems: 'flex-start', margin: 20}, common.shadow]}>
+            <Image source={require('../assets/icons/back.png')} style={{borderRadius: 10, height: 50, width: 50}}/>
+          </TouchableOpacity>
+        </View>
+      }
+    />
+  )
+}
