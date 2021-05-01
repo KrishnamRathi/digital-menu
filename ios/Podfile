@@ -14,6 +14,8 @@ target 'digitalmenu' do
     use_flipper!({ 'Flipper' => '0.80.0' })
     pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+    pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
     post_install do |installer|
       flipper_post_install(installer)
     end
