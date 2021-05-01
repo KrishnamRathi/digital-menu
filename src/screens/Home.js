@@ -20,10 +20,10 @@ export default Home = () => {
         </TouchableOpacity>
       </View>
     );
-  else return <OpenScanner />
+  else return <OpenScanner setView={setView}/>
 }
 
-const OpenScanner = () => {
+const OpenScanner = ({setView}) => {
   return (
     <QRCodeScanner
       onRead={(e) => onSuccess(e)}
