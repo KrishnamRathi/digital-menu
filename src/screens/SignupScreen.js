@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View ,TextInput,ScrollView, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { styles } from '../../styles/styles'
+import { styles } from '../styles/styles'
 
 export default function SignupScreen({navigation}) {
     return (
@@ -9,10 +9,11 @@ export default function SignupScreen({navigation}) {
             flex: 1,
             alignSelf: 'stretch',
             // marginTop: '2%',
-            paddingLeft: 35,
-            paddingRight: 35,
+            paddingLeft: 20,
+            paddingRight: 20,
             // backgroundColor:'#edf0f2'
             // alignItems: 'stretch'
+            
         }}
             >
             <View style={{marginTop:30}}>

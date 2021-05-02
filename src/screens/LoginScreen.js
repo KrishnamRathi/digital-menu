@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import {  Text, View ,TextInput,ScrollView,TouchableOpacity, Image } from 'react-native'
-import { styles } from '../../styles/styles'
+import { styles } from '../styles/styles'
 import '@react-native-firebase/app'
 import firestore from '@react-native-firebase/firestore'
 
@@ -22,6 +22,7 @@ export default function LoginScreen({navigation}) {
             // paddingLeft: 0,
             // paddingRight: 0,
             // backgroundColor:'#edf0f2',
+            paddingHorizontal: 20
         }}>
             <View style={{marginTop:100}}>
                 <Text style={[styles.heading,{marginBottom:'10%'}]}>Login</Text>

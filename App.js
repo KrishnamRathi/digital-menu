@@ -3,8 +3,8 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView } from 'react-native';
-import LoginScreen from './src/screens/signIn/LoginScreen';
-import SignupScreen from './src/screens/signUp/SignupScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import SignupScreen from './src/screens/SignupScreen';
 import Menu from './src/screens/Menu';
 import Home from './src/screens/Home'
 import Orders from './src/screens/Orders';
