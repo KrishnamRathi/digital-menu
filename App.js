@@ -10,10 +10,10 @@ import Home from './src/screens/Home'
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* <LoginScreen/> */}
+      <LoginScreen/>
       {/* <SignupScreen/> */}
       {/* <Text>hi</Text> */}
-     <Menu/>
+     {/* <Menu/> */}
      {/* <Home/> */}
       {/* <StatusBar style="auto" /> */}
     </SafeAreaView>
