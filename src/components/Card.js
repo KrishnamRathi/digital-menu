@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles as common } from '../styles/common'
 
-const Card = ({ name, desc, price }) => {
+const Card = ({ name, desc, price, image }) => {
     return (
         <View style={[{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: 100, borderRadius: 10, padding: 20, borderWidth: 1}]}>
             <View style={{ flexDirection: 'row' }}>
-                <Image source={require("../assets/icons/pizza.png")} style={{ height: 60, width: 60, alignSelf: 'center' }} />
+                <Image source={{uri: image}} style={{ height: 60, width: 60, alignSelf: 'center', borderRadius: 10 }} />
                 <View style={{ justifyContent: 'center', padding: 20 }}>
                     <Text style={common.fontSmallBold}>{name}</Text>
                     <Text style={common.secondaryText}>{desc}</Text>
