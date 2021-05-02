@@ -4,17 +4,17 @@ import { styles } from '../../styles/styles'
 import '@react-native-firebase/app'
 import firestore from '@react-native-firebase/firestore'
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
 
-    useEffect(()=>{
-        firestore().collection('User').get().then(querySnapshot => {
-            console.log('Total users: ', querySnapshot.size);
+    // useEffect(()=>{
+    //     firestore().collection('User').get().then(querySnapshot => {
+    //         console.log('Total users: ', querySnapshot.size);
 
-            querySnapshot.forEach(documentSnapshot => {
-            console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
-            });
-        });
-    },[])
+    //         querySnapshot.forEach(documentSnapshot => {
+    //         console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+    //         });
+    //     });
+    // },[])
     
     return (
         <ScrollView style={{
@@ -47,11 +47,11 @@ export default function LoginScreen() {
                     />
                 </View>
                 <View style={{ paddingBottom: '7%', flexDirection:'row', justifyContent:'space-between'}}>
-                    <TouchableOpacity><Text>Don't have an account? Sign Up </Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Signup")}><Text>Don't have an account? Sign Up </Text></TouchableOpacity>
                     <TouchableOpacity><Text>Forgot Password?</Text></TouchableOpacity>
                 </View>
                 <View style={{alignItems:'flex-end'}}>
-                    <TouchableOpacity style={[styles.button,styles.container]} >
+                    <TouchableOpacity style={[styles.button,styles.container]} onPress={() => navigation.navigate("Menu")} >
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
