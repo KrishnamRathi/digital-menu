@@ -41,7 +41,7 @@ const data = [
 
 const Menu = () => {
     return (
-        <View>
+        <View style={{padding: 10}}>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 }}>
                 <TextInput style={styles.textfield} placeholder="Search for any dish" />
                 <TouchableOpacity>
