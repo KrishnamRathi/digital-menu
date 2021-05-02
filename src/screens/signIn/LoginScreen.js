@@ -1,11 +1,21 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {  Text, View ,TextInput,ScrollView,TouchableOpacity, Image } from 'react-native'
-// import { Context as AuthContext } from '../../context/AuthContext'
 import { styles } from '../../styles/styles'
+import '@react-native-firebase/app'
+import firestore from '@react-native-firebase/firestore'
 
-export default function LoginScreen({navigation}) {
-    // const { login } = useContext(AuthContext);
+export default function LoginScreen() {
 
+    useEffect(()=>{
+        firestore().collection('User').get().then(querySnapshot => {
+            console.log('Total users: ', querySnapshot.size);
+
+            querySnapshot.forEach(documentSnapshot => {
+            console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+            });
+        });
+    },[])
+    
     return (
         <ScrollView style={{
             // flex: 1,
@@ -42,7 +52,7 @@ export default function LoginScreen({navigation}) {
                 </View>
                 <View style={{alignItems:'flex-end'}}>
                     <TouchableOpacity style={[styles.button,styles.container]} >
-                        <Text style={styles.buttonText}>Log in</Text>
+                        <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "803838261066",
+    "firebase_url": "https://digital-menu-44ac4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "digital-menu-44ac4",
+    "storage_bucket": "digital-menu-44ac4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803838261066:android:847406b46cca8d716333b3",
+        "android_client_info": {
+          "package_name": "my.digital.menu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803838261066-icm09n085qgms0653g6crn73d330mvib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwHDYc-a0JZH5srEspm5GDpKS6dkJ6NuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803838261066-icm09n085qgms0653g6crn73d330mvib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
