@@ -16,10 +16,10 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Menu">
           <Stack.Screen options={{headerShown: false}} name="Login" component={LoginScreen} />
           <Stack.Screen options={{headerShown: false}} name="Signup" component={SignupScreen} />
-          <Stack.Screen name="Menu" component={Menu} />
+          <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu} />
           <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
         {/* <Orders /> */}
