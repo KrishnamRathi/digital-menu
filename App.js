@@ -11,7 +11,7 @@ import Orders from './src/screens/Orders';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <LoginScreen/>
+      {/* <LoginScreen/> */}
       {/* <SignupScreen/> */}
       {/* <Text>hi</Text> */}
      {/* <Menu/> */}
