@@ -5,6 +5,8 @@ import { styles as common } from '../styles/common';
 import Card from '../components/Card';
 import Category from '../components/Category';
 import firestore from '@react-native-firebase/firestore';
+import { useDispatch, useSelector } from 'react-redux'
+import {fetchMenu} from '../redux/actions/menu';
 
 
 const data = [
@@ -42,21 +44,11 @@ const data = [
 
 
 const Menu = () => {
-
-    const [menu, setMenu] = useState(null);
-
-    const getDishes = async () => {
-        const subscriber = await firestore().collection('Restaurant')
-            .doc('1')
-            .onSnapshot((rest) => {
-                setMenu(rest.data().menu);
-            });
-
-        return () => subscriber();
-    }
+    const dispatch = useDispatch();
+    const menu = useSelector(state => state.menu.menu);
 
     useEffect(() => {
-        getDishes();
+        dispatch(fetchMenu());
     }, [])
 
     if (!menu) return <Text>Loading ...</Text>
@@ -76,7 +68,7 @@ const Menu = () => {
                     <FlatList
                         horizontal={true}
                         data={menu}
-                        keyExtractor={(data, index) => index+""}
+                        keyExtractor={(data, index) => index + ""}
                         renderItem={({ item, index }) => {
                             return (
                                 <View style={{ marginLeft: 20 }}>
@@ -90,10 +82,10 @@ const Menu = () => {
                 <View style={{ height: '65%' }}>
                     <FlatList
                         data={menu}
-                        keyExtractor={(data, index) => index+""}
+                        keyExtractor={(data, index) => index + ""}
                         renderItem={({ item, index }) => {
                             return (
-                                <View key={index} style={{ marginTop: 20 }}>{console.log(item)}
+                                <View key={index} style={{ marginTop: 20 }}>
                                     <Card image={item.image} name={item.name} desc={item.description} price={item.price} />
                                 </View>
                             )
