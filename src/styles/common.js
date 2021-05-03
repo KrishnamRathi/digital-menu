@@ -31,6 +31,11 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white'
     },
+    fontMediumBold: {
+        color:'white',
+        fontWeight:'700',
+        fontSize:18
+    },
     secondaryText: {
         fontSize: 12,
         color: '#BCBCBC'

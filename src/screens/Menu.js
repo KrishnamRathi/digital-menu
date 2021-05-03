@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, Button, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import { styles } from '../styles/menu';
 import { styles as common } from '../styles/common';
 import Card from '../components/Card';
 import Category from '../components/Category';
+import Invoice from './Invoice';
 
 const data = [
     {
@@ -40,8 +41,63 @@ const data = [
 
 
 const Menu = () => {
+    const [show,setShow]=useState(false);
+
+    const changeShow= () =>{
+        if(show==true)setShow(false)
+    }
+
     return (
         <View style={{padding: 10}}>
+            {show?
+            <View onPress={()=>changeShow()}>
+                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 }}>
+                    <TextInput style={styles.textfield} placeholder="Search for any dish" />
+                    <TouchableOpacity>
+                        <Image source={require('../assets/icons/filter.png')}
+                            style={{ borderRadius: 8, height: 40, width: 40 }}
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: 'row', overflowX: 'scroll' }}>
+                    <FlatList
+                        horizontal={true}
+                        data={data}
+                        keyExtractor={(data, index) => data.desc}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <View style={{ marginLeft: 20 }}>
+                                    <Category name={item.name} active={index === 0 ? true : false} />
+                                </View>
+                            )
+                        }}
+                    />
+                </View>
+                <View style={{height: '65%'}}>
+                    <FlatList
+                        data={data}
+                        keyExtractor={(data, index) => data.desc}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <View key={index} style={{ marginTop: 20 }}>
+                                    <Card name={item.name} desc={item.desc} price={item.price} />
+                                </View>
+                            )
+                        }}
+                    />
+                </View>
+
+                <View style={{ backgroundColor: 'white', justifyContent: 'center', height: '20%', marginHorizontal: -20 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 20 }}>
+                        <Text style={common.fontSmall}>Total Payable: </Text>
+                        <Text style={common.veryLargeFontBold}>$24.50</Text>
+                    </View>
+                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={()=>setShow(true)}>
+                        <Text style={[common.fontLargeBold, common.buttonText]}>Checkout</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>:
+            <View>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 }}>
                 <TextInput style={styles.textfield} placeholder="Search for any dish" />
                 <TouchableOpacity>
@@ -82,10 +138,13 @@ const Menu = () => {
                     <Text style={common.fontSmall}>Total Payable: </Text>
                     <Text style={common.veryLargeFontBold}>$24.50</Text>
                 </View>
-                <TouchableOpacity style={{ alignItems: 'center' }}>
+                <TouchableOpacity style={{ alignItems: 'center' }} onPress={()=>setShow(true)}>
                     <Text style={[common.fontLargeBold, common.buttonText]}>Checkout</Text>
                 </TouchableOpacity>
             </View>
+            </View>
+            }
+            {show?<Invoice/>:null}
         </View>
     )
 }

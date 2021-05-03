@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     button: {
         height: 40,
         width: 80,
-        backgroundColor: '#F4A460',
+        backgroundColor: '#F2A253',
         justifyContent: 'center',
         alignSelf: 'center',
         borderRadius: 10,
@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     heading:{
         fontSize:50,
         fontWeight:'bold',
-        color:'#F4A460',
+        color:'#F2A253',
         alignSelf: 'center'
     },
     SectionStyle: {
