@@ -1,10 +1,15 @@
-import * as types from '../constants/actionTypes';
+import {GET_MENU, CHANGE_CATEGORY} from '../constants/actionTypes';
 import * as status from './';
 import firestore from '@react-native-firebase/firestore';
 
 export const getMenu = (menu) => ({
-    type: types.GET_MENU,
+    type: GET_MENU,
     menu
+})
+
+export const changeCategory = (category) =>({
+    type: CHANGE_CATEGORY,
+    category
 })
 
 export const fetchMenu = (restId = '1') => {
@@ -14,9 +19,14 @@ export const fetchMenu = (restId = '1') => {
         firestore().collection('Restaurant')
             .doc(restId)
             .onSnapshot((rest) => {
-                menu = rest.data().menu;
-                dispatch(getMenu(menu));
-                dispatch(status.setSuccessMessage("success"));
+                if (rest.data()) {
+                    menu = rest.data().menu;
+                    dispatch(getMenu(menu));
+                    dispatch(status.setSuccessMessage("success"));
+                }else{
+                    dispatch(getMenu(menu));
+                    dispatch(status.setErrorMessage("fail"));
+                }
             });
     }
 }

@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, SafeAreaView, ActivityIndicator, StatusBar } from 'react-native';
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import Menu from './src/screens/Menu';
@@ -16,9 +15,12 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const loading = useSelector(state => state.status.loading)
-  // console.log("Loading ->>", loading);
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#F2A253"
+      />
       {loading ? <ActivityIndicator size="large" style={{ height: '100%', zIndex: 1000 }} color="#0000ff" /> : null}
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Menu">
