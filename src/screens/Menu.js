@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Button, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { View, Text, TextInput, Image, TouchableOpacity, FlatList } from 'react-native'
 import { styles } from '../styles/menu';
 import { styles as common } from '../styles/common';
 import Card from '../components/Card';

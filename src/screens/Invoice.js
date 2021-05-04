@@ -1,9 +1,7 @@
 import React,{useState} from 'react'
-import { View, Text, TextInput, Button, Image, TouchableOpacity, ScrollView, FlatList,Modal,Pressable,TouchableWithoutFeedback } from 'react-native'
-import { styles } from '../styles/menu';
+import { View, Text, TouchableOpacity, FlatList,Modal } from 'react-native'
 import { styles as common } from '../styles/common';
 import Card2 from '../components/Card2';
-import Category from '../components/Category';
 
 const data = [
     {

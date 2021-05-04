@@ -11,9 +11,9 @@ import Invoice from './src/screens/Invoice';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      {/* <LoginScreen/> */}
+      <LoginScreen/>
       {/* <SignupScreen/> */}
-     <Menu/>
+     {/* <Menu/> */}
      {/* <Home/> */}
      {/* <Invoice/> */}
       {/* <StatusBar style="auto" /> */}
