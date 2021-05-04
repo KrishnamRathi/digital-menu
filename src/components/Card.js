@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styles as common } from '../styles/common'
 import {addToCart, deleteFromCart} from '../redux/actions/cart'
 import {useSelector, useDispatch} from 'react-redux';
+import CommaSeperator from '../utils/commaSeperator';
 
 const Card = ({ name, desc, price, image, id }) => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Card = ({ name, desc, price, image, id }) => {
                         <Image source={require("../assets/icons/veg.png")} style={{ height: 10, width: 10,marginLeft:'5%' }} />
                     </View>
                     <Text style={common.secondaryText}>{desc}</Text>
-                    <Text style={common.fontSmallBold}>₹{price}</Text>
+                    <Text style={common.fontSmallBold}>₹{CommaSeperator(parseInt(price))}</Text>
                 </View>
             </View>
             <View style={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>

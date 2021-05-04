@@ -5,9 +5,13 @@ initialState = {
     totalprice: 0
 }
 
+// items array consists of objects of each item
 // item -> {
 //     id: '1',
-//     quantity: 0
+//     quantity: 0,
+//     name: "pizza",
+//     category: 'italian',
+//     description: 'some desc'
 // }
 
 export default card = (state = initialState, action) => {
@@ -34,8 +38,8 @@ export default card = (state = initialState, action) => {
                 if(dish.quantity>1){
                     dish.quantity--;
                     newState.items.push(dish);
-                    newState.totalprice-=parseInt(action.dish.price);
                 } 
+                newState.totalprice-=parseInt(action.dish.price);
             }
             return newState;
         default:

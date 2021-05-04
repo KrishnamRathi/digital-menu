@@ -2,37 +2,12 @@ import React,{useState} from 'react'
 import { View, Text, TouchableOpacity, FlatList,Modal } from 'react-native'
 import { styles as common } from '../styles/common';
 import Card2 from '../components/Card2';
-
-const data = [
-    {
-        name: 'Pizza',
-        price: '12.00',
-        desc: 'Chicken Pizza',
-        quantity: 2
-    },
-    {
-        name: 'Burger',
-        price: '8.00',
-        desc: 'Veg Burger',
-        quantity: 3
-    },
-    {
-        name: 'Sizzler',
-        price: '20.00',
-        desc: 'Chinese Sizzler',
-        quantity: 1
-    },
-    {
-        name: 'Butter paneer masala',
-        price: '10.00',
-        desc: 'White Sauce',
-        quantity: 2
-    }
-]
-
+import {useSelector} from 'react-redux';
+import CommaSeperator from '../utils/commaSeperator';
 
 const Invoice = ({changeShow}) => {
     const [modalVisible, setModalVisible] = useState(true);
+    const cart = useSelector(state => state.cart);
 
     return (
         <View style={{height:'100%'}}>
@@ -52,12 +27,12 @@ const Invoice = ({changeShow}) => {
                                 <Text style={[common.veryLargeFontBold,{marginHorizontal:10,color:'#F2A253'}]}>Invoice</Text>
                                 <View style={{height: '55%',marginHorizontal:10}}>
                                     <FlatList
-                                        data={data}
-                                        keyExtractor={(data, index) => data.desc}
+                                        data={cart.items}
+                                        keyExtractor={(data, index) => data.id}
                                         renderItem={({ item, index }) => {
                                             return (
                                                 <View key={index} style={{ marginTop: 15 }}>
-                                                    <Card2 name={item.name} desc={item.desc} price={item.price} quantity={item.quantity}/>
+                                                    <Card2 id={item.id} name={item.name} desc={item.description} price={item.price} quantity={item.quantity}/>
                                                 </View>
                                             )
                                         }}
@@ -67,7 +42,7 @@ const Invoice = ({changeShow}) => {
                                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                                         
                                         <Text style={common.fontSmall}>Total Payable: </Text>
-                                        <Text style={common.veryLargeFontBold}>$24.50</Text>
+                                        <Text style={common.veryLargeFontBold}>₹{CommaSeperator(parseInt(cart.totalprice))}</Text>
                                     </View>
                                     <TouchableOpacity style={{ alignItems: 'center' }}>
                                         <Text style={[common.fontLargeBold, common.buttonText]}>Place Order</Text>

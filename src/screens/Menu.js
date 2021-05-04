@@ -53,7 +53,7 @@ const Menu = () => {
     const currentCategory = useSelector(state => state.menu.currentCategory);
     const totalprice = useSelector(state => state.cart.totalprice);
     const [keyword, setKeyword] = useState("");
-    const [show, setShow] = useState(false);
+    const [showfilter, setShowfilter] = useState(false);
 
     const changeShow= () =>{
         setShow(!show)
@@ -68,13 +68,14 @@ const Menu = () => {
             <View style={{ padding: 10 }}>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 }}>
                     <TextInput style={styles.textfield} value={keyword} onChangeText={(word) => setKeyword(word.toLowerCase())} placeholder="Search for any dish" />
-                    <TouchableOpacity onPress={() => setShow(!show)}>
+                    <TouchableOpacity onPress={() => setShowfilter(!showfilter)}>
                         <Image source={require('../assets/icons/filter.png')}
                             style={{ borderRadius: 8, height: 40, width: 40 }}
                         />
                     </TouchableOpacity>
                 </View>
-                {show ? <FilterModal setShow={setShow}/> : null}
+                {/* Modal to apply filters */}
+                {showfilter ? <FilterModal setShow={setShowfilter}/> : null}
                 {/* Categories */}
                 <View style={{ flexDirection: 'row', overflowX: 'scroll' }}>
                     {Object.keys(menu).map((category) => {
