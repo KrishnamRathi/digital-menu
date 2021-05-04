@@ -10,6 +10,7 @@ import { fetchMenu } from '../redux/actions/menu';
 import CommaSeperator from '../utils/commaSeperator';
 import FilterModal from '../components/FilterModal';  
 
+import Invoice from './Invoice';
 
 const data = [
     {
@@ -46,12 +47,17 @@ const data = [
 
 
 const Menu = () => {
+    const [show,setShow]=useState(false);
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menu.menu);
     const currentCategory = useSelector(state => state.menu.currentCategory);
     const totalprice = useSelector(state => state.cart.totalprice);
     const [keyword, setKeyword] = useState("");
     const [show, setShow] = useState(false);
+
+    const changeShow= () =>{
+        setShow(!show)
+    }
 
     useEffect(() => {
         dispatch(fetchMenu('1'));
@@ -101,14 +107,14 @@ const Menu = () => {
                         <Text style={common.fontSmall}>Total Payable: </Text>
                         <Text style={common.veryLargeFontBold}>₹{CommaSeperator(parseInt(totalprice))}</Text>
                     </View>
-                    <TouchableOpacity style={{ alignItems: 'center' }}>
+                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={()=>setShow(true)}>
                         <Text style={[common.fontLargeBold, common.buttonText]}>Checkout</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            {show?<Invoice changeShow={changeShow}/>:null}
+        </View>
         )
     }
-
 }
 
 export default Menu
