@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMenu } from '../redux/actions/menu';
 import CommaSeperator from '../utils/commaSeperator';
-import FilterModal from '../components/FilterModal';  
+import FilterModal from '../components/FilterModal';
 
 import Invoice from './Invoice';
 
@@ -47,7 +47,7 @@ const data = [
 
 
 const Menu = () => {
-    const [show,setShow]=useState(false);
+    const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menu.menu);
     const currentCategory = useSelector(state => state.menu.currentCategory);
@@ -55,7 +55,7 @@ const Menu = () => {
     const [keyword, setKeyword] = useState("");
     const [showfilter, setShowfilter] = useState(false);
 
-    const changeShow= () =>{
+    const changeShow = () => {
         setShow(!show)
     }
 
@@ -74,14 +74,12 @@ const Menu = () => {
                         />
                     </TouchableOpacity>
                 </View>
-                {/* Modal to apply filters */}
-                {showfilter ? <FilterModal setShow={setShowfilter}/> : null}
                 {/* Categories */}
                 <View style={{ flexDirection: 'row', overflowX: 'scroll' }}>
                     {Object.keys(menu).map((category) => {
                         return (
                             <View key={category} style={{ marginLeft: 20 }}>
-                                <Category name={category} active={currentCategory===category}/>
+                                <Category name={category} active={currentCategory === category} />
                             </View>
                         )
                     })}
@@ -93,12 +91,12 @@ const Menu = () => {
                         data={menu[currentCategory]}
                         keyExtractor={(data, index) => data.id}
                         renderItem={({ item, index }) => {
-                            if(item.name.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword))
-                            return (
-                                <View style={{ marginTop: 20 }}>
-                                    <Card id={item.id} image={item.image} name={item.name} desc={item.description} price={item.price} />
-                                </View>
-                            )
+                            if (item.name.toLowerCase().includes(keyword) || item.description.toLowerCase().includes(keyword))
+                                return (
+                                    <View style={{ marginTop: 20 }}>
+                                        <Card id={item.id} image={item.image} name={item.name} desc={item.description} price={item.price} />
+                                    </View>
+                                )
                         }}
                     />
                 </View>
@@ -108,12 +106,15 @@ const Menu = () => {
                         <Text style={common.fontSmall}>Total Payable: </Text>
                         <Text style={common.veryLargeFontBold}>₹{CommaSeperator(parseInt(totalprice))}</Text>
                     </View>
-                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={()=>setShow(true)}>
+                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => setShow(true)}>
                         <Text style={[common.fontLargeBold, common.buttonText]}>Checkout</Text>
                     </TouchableOpacity>
                 </View>
-            {show?<Invoice changeShow={changeShow}/>:null}
-        </View>
+                {/* Modal to show Invoice */}
+                {show ? <Invoice changeShow={changeShow} /> : null}
+                {/* Modal to apply filters */}
+                {showfilter ? <FilterModal setShow={setShowfilter} /> : null}
+            </View>
         )
     }
 }

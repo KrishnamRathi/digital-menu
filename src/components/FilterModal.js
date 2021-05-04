@@ -6,35 +6,36 @@ import { styles as common } from '../styles/common';
 const FilterModal = ({ setShow }) => {
     const [showModal, setShowModal] = useState(true);
     return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={showModal}
-            onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setShowModal(!showModal);
-                setShow(false);
-            }}
-        >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10}}>
-                        <Text style={[common.fontSmall, {alignSelf: 'center'}]}>Veg</Text>
-                        <CheckBox />
+        <View style={{ height: '100%' }}>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={showModal}
+                onRequestClose={() => {
+                    setShowModal(!showModal);
+                    setShow(false);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
+                            <Text style={[common.fontSmall, { alignSelf: 'center' }]}>Veg</Text>
+                            <CheckBox />
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
+                            <Text style={[common.fontSmall, { alignSelf: 'center' }]}>Non-Veg</Text>
+                            <CheckBox />
+                        </View>
+                        <Pressable
+                            style={[styles.button, styles.buttonClose]}
+                            onPress={() => { setShowModal(!showModal), setShow(false) }}
+                        >
+                            <Text style={styles.textStyle}>Apply</Text>
+                        </Pressable>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10}}>
-                        <Text style={[common.fontSmall, {alignSelf: 'center'}]}>Non-Veg</Text>
-                        <CheckBox />
-                    </View>
-                    <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={() => {setShowModal(!showModal), setShow(false)}}
-                    >
-                        <Text style={styles.textStyle}>Apply</Text>
-                    </Pressable>
                 </View>
-            </View>
-        </Modal>
+            </Modal>
+        </View>
     )
 }
 
