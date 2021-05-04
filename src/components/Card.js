@@ -8,7 +8,10 @@ const Card = ({ name, desc, price, image }) => {
             <View style={{ flexDirection: 'row' }}>
                 <Image source={{uri: image}} style={{ height: 60, width: 60, alignSelf: 'center', borderRadius: 10 }} />
                 <View style={{ justifyContent: 'center', padding: 20 }}>
-                    <Text style={common.fontSmallBold}>{name}</Text>
+                    <View style={{ flexDirection: 'row',alignItems:'center' }}>
+                        <Text style={common.fontSmallBold}>{name} </Text>
+                        <Image source={require("../assets/icons/veg.png")} style={{ height: 10, width: 10,marginLeft:'5%' }} />
+                    </View>
                     <Text style={common.secondaryText}>{desc}</Text>
                     <Text>${price}</Text>
                 </View>

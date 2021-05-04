@@ -7,7 +7,7 @@ import Category from '../components/Category';
 import firestore from '@react-native-firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux'
 import {fetchMenu} from '../redux/actions/menu';
-
+import Invoice from './Invoice';
 
 const data = [
     {
@@ -44,8 +44,13 @@ const data = [
 
 
 const Menu = () => {
+    const [show,setShow]=useState(false);
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menu.menu);
+
+    const changeShow= () =>{
+        setShow(!show)
+    }
 
     useEffect(() => {
         dispatch(fetchMenu());
@@ -56,6 +61,7 @@ const Menu = () => {
         return (
             <View style={{ padding: 10 }}>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 20 }}>
+
                     <TextInput style={styles.textfield} placeholder="Search for any dish" />
                     <TouchableOpacity>
                         <Image source={require('../assets/icons/filter.png')}
@@ -87,6 +93,7 @@ const Menu = () => {
                             return (
                                 <View key={index} style={{ marginTop: 20 }}>
                                     <Card image={item.image} name={item.name} desc={item.description} price={item.price} />
+
                                 </View>
                             )
                         }}
@@ -98,14 +105,14 @@ const Menu = () => {
                         <Text style={common.fontSmall}>Total Payable: </Text>
                         <Text style={common.veryLargeFontBold}>$24.50</Text>
                     </View>
-                    <TouchableOpacity style={{ alignItems: 'center' }}>
+                    <TouchableOpacity style={{ alignItems: 'center' }} onPress={()=>setShow(true)}>
                         <Text style={[common.fontLargeBold, common.buttonText]}>Checkout</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            {show?<Invoice changeShow={changeShow}/>:null}
+        </View>
         )
     }
-
 }
 
 export default Menu

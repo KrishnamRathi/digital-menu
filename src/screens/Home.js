@@ -7,9 +7,6 @@ import { styles as common } from '../styles/common';
 
 export default Home = () => {
   const [view, setView] = useState(0);
-  const onSuccess = e => {
-    alert(e.data);
-  };
 
   if (view == 0)
     return (
@@ -24,6 +21,9 @@ export default Home = () => {
 }
 
 const OpenScanner = ({setView}) => {
+  const onSuccess = (e) => {
+    alert(e.data);
+  };
   return (
     <QRCodeScanner
       onRead={(e) => onSuccess(e)}
