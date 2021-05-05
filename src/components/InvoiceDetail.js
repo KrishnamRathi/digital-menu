@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { styles as common } from '../styles/common'
 import CommaSeperator from '../utils/commaSeperator';
 
-const Card2 = ({ name, quantity, price }) => {
+const InvoiceDetail = ({ name, quantity, price }) => {
     return (
         <View style={{ flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginLeft: 2}} >
             <View style={{ flexDirection:'row',alignItems:'center'}}>
@@ -14,4 +14,4 @@ const Card2 = ({ name, quantity, price }) => {
     )
 }
 
-export default Card2
+export default InvoiceDetail
