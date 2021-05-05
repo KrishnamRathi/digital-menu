@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.busfor.RNGooglePayPackage;
 import com.zoontek.rnpermissions.RNPermissionsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.horcrux.svg.SvgPackage;
@@ -50,7 +51,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       List<ReactPackage> packages = new PackageList(this).getPackages();
       packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
-      // packages.add(new MainReactPackage());
+      // packages.add(new MainReactPackage(),
       // packages.add(new ReactNativeFirebaseFirestorePackage());
       return packages;
     }

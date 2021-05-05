@@ -198,6 +198,8 @@ dependencies {
 
     implementation project(':@react-native-firebase_firestore')
 
+    implementation project(':react-native-google-pay')
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }
