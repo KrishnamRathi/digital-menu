@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View ,TextInput,ScrollView, Image } from 'react-native'
+import { Text, View ,TextInput,ScrollView, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { styles } from '../styles/styles'
 
@@ -8,11 +8,8 @@ export default function SignupScreen({navigation}) {
         <ScrollView style={{
             flex: 1,
             alignSelf: 'stretch',
-            // marginTop: '2%',
             paddingLeft: 20,
-            paddingRight: 20,
-            // backgroundColor:'#edf0f2'
-            // alignItems: 'stretch'
+            paddingRight: 20
             
         }}
             >
@@ -45,10 +42,6 @@ export default function SignupScreen({navigation}) {
                         style={{flex:1}}
                         placeholder='Mobile No.'
                         underlineColorAndroid="transparent"
-                        onChangeText={(value) => {
-                            if(isNaN(value)){alert('Not a valid number')}
-                            // if(value.length!==10){alert('Not a valid number')}
-                        }}
                     />
             </View>
                 <View style={[styles.SectionStyle,styles.shadows]}>

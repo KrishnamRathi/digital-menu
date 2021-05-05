@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Modal, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Modal, Pressable, StyleSheet } from 'react-native'
 import CheckBox from '../components/CheckBox'
 import { styles as common } from '../styles/common';
 

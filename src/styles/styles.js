@@ -1,4 +1,3 @@
-
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
@@ -24,7 +23,6 @@ export const styles = StyleSheet.create({
         height: 150,
         width: 120,
         borderRadius: 10,
-        // margin: 10,
         alignSelf: 'center'
     },
     button: {
@@ -77,107 +75,4 @@ export const styles = StyleSheet.create({
         resizeMode : 'stretch',
         alignItems: 'center'
     }
-    // row: {
-    //     flexDirection: 'row'
-    // },
-    // column: {
-    //     flexDirection: 'column'
-    // },
-    // boxOutline: {
-    //     justifyContent: 'space-between',
-    //     marginTop: 10,
-    //     padding: 5,
-    //     borderBottomWidth: 1,
-    //     borderColor: 'gray'
-    // },
-    // boldFont: {
-    //     fontSize: 18,
-    //     fontWeight: 'bold'
-    // },
-    // filterButton: {
-    //     zIndex: 100,
-    //     position: 'absolute',
-    //     bottom: 100,
-    //     height: 40,
-    //     width: 80,
-    //     borderRadius: 8,
-    //     backgroundColor: '#178ae8',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    // },
-    // filterFont: {
-    //     fontSize: 15,
-    //     fontWeight: 'bold',
-    //     color: 'white'
-    // },
-    // add: {
-    //     backgroundColor: '#178ae8',
-    //     width: 40,
-    //     height: 40,
-    //     borderRadius: 1000,
-    //     justifyContent: 'center',
-    //     alignItems: 'center'
-    // },
-    // addText: {
-    //     color: 'black',
-    //     fontSize: 18
-    // },
-    // minus: {
-    //     backgroundColor: 'gray',
-    //     width: 40,
-    //     height: 40,
-    //     borderRadius: 1000,
-    //     justifyContent: 'center',
-    //     alignItems: 'center'
-    // },
-    // minusText: {
-    //     color: 'black',
-    //     fontSize: 18
-    // },
-    
-    // label: {
-    //     paddingLeft: 7,
-    //     fontSize: 20,
-    //     fontWeight: "bold",
-    //     fontFamily:'Times New Roman',
-    //     color: '#1e2620',
-    //     marginBottom: 5
-    // },
-    // heading:{
-    //     fontSize:50,
-    //     fontWeight:'bold',
-    //     color:'#F4A460',
-    //     alignSelf: 'center'
-    // },
-    // langText:{
-    //     fontSize: 30,
-    //     fontWeight: "bold",
-    //     fontFamily:'Times New Roman',
-    //     color: '#1e2620',
-    //     marginBottom: '2%',
-    //     marginTop: '2%',
-    //     paddingLeft: 15,
-    //     paddingRight: 20,
-    // },
-    // labelProfile: {
-    //     fontSize: 23,
-    //     fontWeight: "bold",
-    //     fontFamily:'Times New Roman',
-    //     color: '#1e2620',
-    //     marginTop: 15,
-    //     marginBottom:5
-    // },
-    // drawerButton:{
-    //     borderBottomWidth: 1,
-    //     width: '80%',
-    //     alignItems: 'center',
-    //     borderBottomColor: 'gray',
-    //     margin: 8,
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-evenly'
-    // },
-    // drawerText: {
-    //     fontSize: 20,
-    //     color: 'black'
-    // },
 })

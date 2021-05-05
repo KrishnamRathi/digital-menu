@@ -19,10 +19,6 @@ export default function LoginScreen({navigation}) {
     
     return (
         <ScrollView style={{
-            // flex: 1,
-            // paddingLeft: 0,
-            // paddingRight: 0,
-            // backgroundColor:'#edf0f2',
             paddingHorizontal: 20
         }}>
             <View style={{marginTop:100}}>
