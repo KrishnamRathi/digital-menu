@@ -14,7 +14,7 @@ initialState = {
 //     description: 'some desc'
 // }
 
-export default card = (state = initialState, action) => {
+export default cart = (state = initialState, action) => {
     switch(action.type){
         case ADD_TO_CART:
             var dish = null;
