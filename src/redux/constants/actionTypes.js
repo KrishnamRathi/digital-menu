@@ -2,6 +2,9 @@ export const SET_LOADING_TRUE = "SET_LOADING_TRUE";
 export const SET_ERROR = "SET_ERROR";
 export const SET_SUCCESS = "SET_SUCCESS";
 
+export const LOGIN = "LOGIN";
+export const SIGNUP = "SIGNUP";
+
 export const GET_MENU = "GET_MENU";
 export const CHANGE_CATEGORY = "CHANGE_CATEGORY";
 

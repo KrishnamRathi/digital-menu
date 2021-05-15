@@ -1,17 +1,21 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { useState } from 'react';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { styles as common } from '../styles/common';
 
 
-export default Home = () => {
-  const [view, setView] = useState(0);
+export default Home = ({navigation}) => {
 
+  useEffect(() => {
+    navigation.navigate("Menu");
+  },[])
+
+  const [view, setView] = useState(0);
   if (view == 0)
     return (
       <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <Text style={common.fontSmallBold}>Click here to scan</Text>
+      <Text style={common.fontSmallBold}>Click here to scan</Text>
         <TouchableOpacity style={{ backgroundColor: '#F2A253', borderRadius: 10, width: 80, alignItems: 'center' }} onPress={() => setView(1)}>
           <Text style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }}>+</Text>
         </TouchableOpacity>
