@@ -35,3 +35,38 @@ export const verifyDetails = (username, password) => (
             })
     }
 )
+
+export const register = (name, username, password) => (
+    async function(dispatch) {
+        dispatch(setLoadingTrue());
+        firestore()
+            .collection('User')
+            .where('username', '==', username)
+            .get()
+            .then(qs => {
+                if(qs.docs.length!==0){
+                    dispatch(setErrorMessage('User with username '+username+' already exists !'));
+                    return;
+                }else{
+                    firestore()
+                        .collection('User')
+                        .add({
+                            name,
+                            username,
+                            password,
+                            admin: false
+                        })
+                        .then(() => {
+                            dispatch(setSuccessMessage("User registered successfully !"));
+                        })
+                        .catch(() => {
+                            dispatch(setErrorMessage("Something went wrong. Please try again !"))
+                        })
+                }
+            })
+            .catch(() => {
+                dispatch(setErrorMessage("Something went wrong. Please try again !"));
+                return;
+            })
+    }
+)

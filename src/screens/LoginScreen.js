@@ -4,12 +4,21 @@ import { styles } from '../styles/styles'
 import '@react-native-firebase/app'
 import {useSelector, useDispatch} from 'react-redux'
 import {verifyDetails} from '../redux/actions/authenticate';
+import {setErrorMessage, setSuccessMessage} from '../redux/actions'
 
 export default function LoginScreen({navigation}) {
     const dispatch = useDispatch();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const error =  useSelector(state => state.status.error);
+
+    const login = () => {
+        if(!username || !password) {
+            dispatch(setErrorMessage("Please fill both the entries !"));
+            return;
+        }
+        dispatch(verifyDetails(username, password))
+    }
  
     return (
         <ScrollView style={{
@@ -43,11 +52,11 @@ export default function LoginScreen({navigation}) {
                     />
                 </View>
                 <View style={{ paddingBottom: '7%', flexDirection:'row', justifyContent:'space-between'}}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Signup")}><Text>Don't have an account? Sign Up </Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => {navigation.navigate("Signup");dispatch(setSuccessMessage("")); dispatch(setErrorMessage(""))}}><Text>Don't have an account? Sign Up </Text></TouchableOpacity>
                     <TouchableOpacity><Text>Forgot Password?</Text></TouchableOpacity>
                 </View>
                 <View style={{alignItems:'flex-end'}}>
-                    <TouchableOpacity style={[styles.button,styles.container]} onPress={() => {dispatch(verifyDetails(username, password))}} >
+                    <TouchableOpacity style={[styles.button,styles.container]} onPress={login} >
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
