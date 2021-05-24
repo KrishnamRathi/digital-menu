@@ -4,10 +4,9 @@ import { Text, TouchableOpacity, View, Image } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { styles as common } from '../styles/common';
 
-
 export default Home = () => {
   const [view, setView] = useState(0);
-
+  
   if (view == 0)
     return (
       <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%' }}>
@@ -24,6 +23,7 @@ const OpenScanner = ({setView}) => {
   const onSuccess = (e) => {
     alert(e.data);
   };
+
   return (
     <QRCodeScanner
       onRead={(e) => onSuccess(e)}

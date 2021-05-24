@@ -1,21 +1,20 @@
-import React,{useEffect} from 'react';
+import React,{useState,useEffect} from 'react';
 import {  Text, View ,TextInput,ScrollView,TouchableOpacity, Image } from 'react-native'
 import { styles } from '../styles/styles'
 import '@react-native-firebase/app'
 import firestore from '@react-native-firebase/firestore'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser,addUser } from '../redux/actions/auth';
 
 export default function LoginScreen({navigation}) {
+    const [phone, setPhone] = useState('');
+    const dispatch = useDispatch();
 
-    // useEffect(()=>{
-    //     firestore().collection('User').get().then(querySnapshot => {
-    //         console.log('Total users: ', querySnapshot.size);
-
-
-    //         querySnapshot.forEach(documentSnapshot => {
-    //         console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
-    //         });
-    //     });
-    // },[])
+    useEffect(() => {
+        dispatch(getUser('1234567890'));
+        dispatch(addUser());
+        
+    }, [])
     
     return (
         <ScrollView style={{
@@ -28,14 +27,16 @@ export default function LoginScreen({navigation}) {
                     source={require("../assets/icons/mainicon.png")}
                 />
                 <View style={[styles.SectionStyle,styles.shadows]}>
-                    <Image source={require("../assets/icons/login.png")} style={styles.ImageStyle} />
+                    <Image source={require("../assets/icons/phone.png")} style={styles.ImageStyle} />
                     <TextInput
                         style={{flex:1}}
-                        placeholder="Email or Phone No."
+                        keyboardType = 'numeric'
+                        placeholder="Phone No."
                         underlineColorAndroid="transparent"
+                        onChange={(val)=>setPhone(val)}
                     />
                 </View>
-                <View style={[styles.SectionStyle,styles.shadows]}>
+                {/* <View style={[styles.SectionStyle,styles.shadows]}>
                     <Image source={require("../assets/icons/lock.png")} style={styles.ImageStyle} />
                     <TextInput
                         style={{flex:1}}
@@ -43,13 +44,13 @@ export default function LoginScreen({navigation}) {
                         underlineColorAndroid="transparent"
                         secureTextEntry={true}
                     />
-                </View>
-                <View style={{ paddingBottom: '7%', flexDirection:'row', justifyContent:'space-between'}}>
+                </View> */}
+                <View style={{ paddingBottom: '7%', alignSelf:'center'}}>
                     <TouchableOpacity onPress={() => navigation.navigate("Signup")}><Text>Don't have an account? Sign Up </Text></TouchableOpacity>
-                    <TouchableOpacity><Text>Forgot Password?</Text></TouchableOpacity>
+                    {/* <TouchableOpacity><Text>Forgot Password?</Text></TouchableOpacity> */}
                 </View>
                 <View style={{alignItems:'flex-end'}}>
-                    <TouchableOpacity style={[styles.button,styles.container]} onPress={() => navigation.navigate("Menu")} >
+                    <TouchableOpacity style={[styles.button,styles.container]} onPress={() => navigation.navigate("Otp")} >
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                 </View>

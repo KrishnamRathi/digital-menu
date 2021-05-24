@@ -3,6 +3,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView, ActivityIndicator, StatusBar } from 'react-native';
 import LoginScreen from './src/screens/LoginScreen';
+import Otp from './src/screens/Otp';
 import SignupScreen from './src/screens/SignupScreen';
 import Menu from './src/screens/Menu';
 import Home from './src/screens/Home'
@@ -27,6 +28,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+          <Stack.Screen options={{ headerShown: false }} name="Otp" component={Otp} />
           <Stack.Screen options={{ headerShown: false }} name="Signup" component={SignupScreen} />
           <Stack.Screen options={{ headerShown: false }} name="Menu" component={Menu} />
           <Stack.Screen name="Home" component={Home} />

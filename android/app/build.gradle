@@ -191,6 +191,8 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation "androidx.browser:browser:1.2.0"
 
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies
@@ -219,6 +221,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    compile 'com.google.android.gms:play-services-safetynet:17.0.0'
 }
 
 // Run this once to be able to run the application with BUCK
