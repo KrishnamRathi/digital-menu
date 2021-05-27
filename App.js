@@ -5,6 +5,7 @@ import { StyleSheet, SafeAreaView, ActivityIndicator, StatusBar } from 'react-na
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import Menu from './src/screens/Menu';
+import Admin from './src/screens/Admin';
 import Home from './src/screens/Home'
 import Orders from './src/screens/Orders';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,9 +26,10 @@ export default function App() {
       />
       {loading ? <ActivityIndicator size="large" style={{ height: '100%', zIndex: 1000 }} color="#0000ff" /> : null}
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Admin">
           <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
           <Stack.Screen options={{ headerShown: false }} name="Signup" component={SignupScreen} />
+          <Stack.Screen options={{ headerShown: false }} name="Admin" component={Admin} />
           <Stack.Screen options={{ headerShown: false }} name="Menu" component={Menu} />
           <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
