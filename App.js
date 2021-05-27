@@ -5,6 +5,7 @@ import { StyleSheet, SafeAreaView, ActivityIndicator, StatusBar } from 'react-na
 import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import Menu from './src/screens/Menu';
+import Admin from './src/screens/Admin';
 import Home from './src/screens/Home'
 import Orders from './src/screens/Orders';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -38,6 +39,7 @@ export default function App() {
           <Stack.Navigator initialRouteName={"Home"}>
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
             <Stack.Screen options={{ headerShown: false }} name="Menu" component={Menu} />
+            <Stack.Screen options={{ headerShown: false }} name="Admin" component={Admin} />
           </Stack.Navigator>
           :
           <Stack.Navigator initialRouteName={"Login"}>
