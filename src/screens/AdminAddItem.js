@@ -1,19 +1,17 @@
 import React,{useState} from 'react'
-import { View, Text,Image,TextInput,StyleSheet,Picker } from 'react-native'
+import { View, Text,TextInput,StyleSheet,Picker,ScrollView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-// import { styles as common } from '../styles/common'
 import { styles } from '../styles/styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Entypo from 'react-native-vector-icons/Entypo'
 import Radio from '../components/Radio';
 
 const AdminAddItem = () => {
     const [selectedValue, setSelectedValue] = useState("italian");
 
     return (
-        <View style={{marginTop:'20%'}}>
+        <ScrollView style={{marginTop:'20%'}}>
             <Text style={[styles.heading,{marginBottom:'10%'}]}>Add Item </Text>
             <View style={{flexDirection:'row', display:'flex'}}>
                 <View style={[styles.SectionStyle, styles.shadows, my_styles.box]}>
@@ -72,7 +70,7 @@ const AdminAddItem = () => {
                     <Text style={styles.buttonText}>Add </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

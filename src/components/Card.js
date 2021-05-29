@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import React,{useState} from 'react'
+import { View, Text, Image, TouchableOpacity,Switch } from 'react-native'
 import { styles as common } from '../styles/common'
 import {addToCart, deleteFromCart} from '../redux/actions/cart'
 import {useSelector, useDispatch} from 'react-redux';
@@ -9,6 +9,9 @@ const Card = ({ name, desc, price, image, id }) => {
     const dispatch = useDispatch();
     const item = useSelector(state => state.cart.items.filter((item) => item.id===id))
     const quantity = item?.length > 0 ? item[0].quantity : 0;
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const isAdmin=true
 
     return (
         <View style={[{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: 100, borderRadius: 10, padding: 20, borderWidth: 1}]}>
@@ -23,17 +26,24 @@ const Card = ({ name, desc, price, image, id }) => {
                     <Text style={common.fontSmallBold}>₹{CommaSeperator(parseInt(price))}</Text>
                 </View>
             </View>
-            <View style={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={common.fontSmallBold}>{quantity}</Text>
-                <View style={{ flexDirection: 'row', backgroundColor: '#F2A253', width: 60, height: 30, borderRadius: 20, justifyContent: 'space-evenly', alignItems: 'center' }}>
-                    <TouchableOpacity onPress={() => dispatch(deleteFromCart({name, id, price, desc}))}>
-                        <Text style={common.fontLargeBold}>−</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => dispatch(addToCart({name, id, price, desc}))}>
-                        <Text style={common.fontLargeBold}>+</Text>
-                    </TouchableOpacity>
+            {isAdmin?<Switch
+                trackColor={{ false: "#767577", true: "#F2A253" }}
+                thumbColor={isEnabled ? "#F9EEE8" : "#f4f3f4"}
+                ios_backgroundColor="#F2A253"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+            />:<View style={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Text style={common.fontSmallBold}>{quantity}</Text>
+                    <View style={{ flexDirection: 'row', backgroundColor: '#F2A253', width: 60, height: 30, borderRadius: 20, justifyContent: 'space-evenly', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => dispatch(deleteFromCart({name, id, price, desc}))}>
+                            <Text style={common.fontLargeBold}>−</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => dispatch(addToCart({name, id, price, desc}))}>
+                            <Text style={common.fontLargeBold}>+</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            }
         </View>
     )
 }
