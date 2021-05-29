@@ -54,7 +54,8 @@ const Menu = () => {
     const totalprice = useSelector(state => state.cart.totalprice);
     const [keyword, setKeyword] = useState("");
     const [showfilter, setShowfilter] = useState(false);
-
+    const isAdmin=true
+    
     const changeShow = () => {
         setShow(!show)
     }
@@ -101,7 +102,7 @@ const Menu = () => {
                     />
                 </View>
                 {/* Total payable details */}
-                <View style={{ backgroundColor: 'white', justifyContent: 'center', height: '20%', marginHorizontal: -20 }}>
+                {isAdmin?<View></View>:<View style={{ backgroundColor: 'white', justifyContent: 'center', height: '20%', marginHorizontal: -20 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 20 }}>
                         <Text style={common.fontSmall}>Total Payable: </Text>
                         <Text style={common.veryLargeFontBold}>₹{CommaSeperator(parseInt(totalprice))}</Text>
@@ -109,7 +110,7 @@ const Menu = () => {
                     <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => setShow(true)}>
                         <Text style={[common.fontLargeBold, common.buttonText]}>Checkout</Text>
                     </TouchableOpacity>
-                </View>
+                </View>}
                 {/* Modal to show Invoice */}
                 {show ? <Invoice changeShow={changeShow} /> : null}
                 {/* Modal to apply filters */}
