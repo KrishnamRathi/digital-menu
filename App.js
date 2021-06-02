@@ -17,7 +17,7 @@ import Invoice from './src/screens/Invoice';
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [initialStack, setInitialStack] = useState(0);
+  const [initialStack, setInitialStack] = useState(1);
   const token = useSelector(state => state.authenticate.username);
   const loading = useSelector(state => state.status.loading);
 
@@ -36,7 +36,7 @@ export default function App() {
       {loading ? <ActivityIndicator size="large" style={{ height: '100%', zIndex: 1000 }} color="#0000ff" /> : null}
       <NavigationContainer>
         {initialStack === 1 ?
-          <Stack.Navigator initialRouteName={"Home"}>
+          <Stack.Navigator initialRouteName={"Admin"}>
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
             <Stack.Screen options={{ headerShown: false }} name="Menu" component={Menu} />
             <Stack.Screen options={{ headerShown: false }} name="Admin" component={Admin} />
