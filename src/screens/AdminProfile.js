@@ -1,9 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { View, Text,Image } from 'react-native'
 import { styles as common } from '../styles/common'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useSelector, useDispatch} from 'react-redux'
+import {getRestDetails} from '../redux/actions/admin'
 
 const AdminProfile = () => {
+    const dispatch = useDispatch();
+    // const rest = useSelector(state => state.admin);
+    useEffect(() => {
+        dispatch(getRestDetails('1'));
+    }, [])
     return (
         <View>
             <Image source={require("../assets/images/restaurant.jpeg")} style={{ height: '70%', width: '100%'}} />

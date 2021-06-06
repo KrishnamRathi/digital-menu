@@ -10,3 +10,6 @@ export const CHANGE_CATEGORY = "CHANGE_CATEGORY";
 
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_FROM_CART = "DELETE_FROM_CART";
+
+export const FETCH_REST = "FETCH_REST";
+export const CHANGE_ORDER_STATUS = "CHANGE_ORDER_STATUS";

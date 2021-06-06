@@ -1,5 +1,6 @@
 import menu from './menu';
 import cart from './cart';
+import admin from './admin';
 import authenticate from './authenticate';
 import { combineReducers }  from 'redux'
 import * as type from '../constants/actionTypes';
@@ -22,4 +23,4 @@ const status = (state = initialstate, action) =>{
     }
 } 
 
-export default combineReducers({menu, status, cart, authenticate});
+export default combineReducers({menu, status, cart, authenticate, admin});
