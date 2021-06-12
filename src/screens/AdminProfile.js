@@ -1,29 +1,37 @@
-import React, {useEffect} from 'react'
-import { View, Text,Image } from 'react-native'
+import React, { useEffect } from 'react'
+import { ScrollView, Text, Image, View, ImageBackground, Animated } from 'react-native'
 import { styles as common } from '../styles/common'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useSelector, useDispatch} from 'react-redux'
-import {getRestDetails} from '../redux/actions/admin'
+import { useSelector, useDispatch } from 'react-redux'
+import { getRestDetails } from '../redux/actions/admin'
 
 const AdminProfile = () => {
     const dispatch = useDispatch();
-    // const rest = useSelector(state => state.admin);
+    const rest = useSelector(state => state.admin);
     useEffect(() => {
         dispatch(getRestDetails('1'));
     }, [])
+    const pan = React.useRef(new Animated.ValueXY()).current;
+
     return (
-        <View>
-            <Image source={require("../assets/images/restaurant.jpeg")} style={{ height: '70%', width: '100%'}} />
-            <View style={{ marginLeft:'80%',marginTop:'-4%'}} >
-                <MaterialIcons name="food-bank" color='#F2A253' size={60} />
-                <Text style={{ fontSize:11}}>10 AM-10 PM</Text>
+        <View style={{marginBottom: 100}}>
+            <Image source={{ uri: rest?.image }} style={{ height: '60%', width: '100%',  backgroundColor: 'black', position: 'relative'}} />
+            <View style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', marginTop: '-4%', paddingHorizontal: 5}}>
+                <Text style={[common.fontMediumBold, { color: 'black' }]}>{rest?.name}</Text>
+                <View>
+                    <MaterialIcons name="food-bank" color='#F2A253' size={60} />
+                    <Text style={{ fontSize: 11 }}>11 AM-11 PM</Text>
+                </View>
             </View>
-            <View style={{marginHorizontal:15,marginTop:'7%'}}>
-                <Text style={[common.fontLarge,{marginTop:'-20%'}]}>Grande Restaurant</Text>
-                <Text style={[common.secondaryText,{fontSize:15}]}>Indore, MP</Text>
-                <Text style={[common.secondaryText,{fontSize:15,marginTop:5}]}>+919876543210</Text>
-                <Text style={{marginTop:24,fontSize:14}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</Text>
-            </View>
+
+            <ScrollView style={{paddingHorizontal: 10}}>
+                <Text style={[common.fontSmallBold, { fontSize: 15, width: '60%', marginTop: 10 }]}>Address: </Text>
+                <Text style={[common.fontSmall, { fontSize: 15, width: '60%', marginTop: 10 }]}>{rest?.address}</Text>
+                <Text style={[common.fontSmallBold, { fontSize: 15, width: '60%', marginTop: 10 }]}>Contact: </Text>
+                <Text style={[common.fontSmall, { fontSize: 15, width: '60%', marginTop: 10 }]}>+91 {rest?.contact}</Text>
+                <Text style={[common.fontSmallBold, {marginTop: 20,}]}>About</Text>
+                <Text style={{ fontSize: 14}}>{rest?.about}</Text>
+            </ScrollView>
         </View>
     )
 }
