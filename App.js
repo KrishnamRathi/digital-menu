@@ -37,8 +37,8 @@ export default function App() {
       <NavigationContainer>
         {initialStack === 1 ?
           <Stack.Navigator initialRouteName={"Admin"}>
-            <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-            <Stack.Screen options={{ headerShown: false }} name="Menu" component={Menu} />
+            {/* <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+            <Stack.Screen options={{ headerShown: false }} name="Menu" component={Menu} /> */}
             <Stack.Screen options={{ headerShown: false }} name="Admin" component={Admin} />
           </Stack.Navigator>
           :

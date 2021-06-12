@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, StyleSheet, Picker, ScrollView } from 'react-native'
+import { View, Text, TextInput, StyleSheet, ScrollView, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { styles } from '../styles/styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,15 +9,20 @@ import Radio from '../components/Radio';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import {Picker} from '@react-native-picker/picker';
+import { useDispatch } from 'react-redux';
+import {setLoadingTrue, setSuccessMessage, setErrorMessage} from '../redux/actions'
 
 
 const AdminAddItem = () => {
-    const [category, setCategory] = useState("italian");
+    const dispatch = useDispatch();
+    const [category, setCategory] = useState("Italian");
     const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
     const [price, setPrice] = useState(null);
     const [veg, setVeg] = useState(null);
     const [image, setImage] = useState(null);
+    const restaurant = '1';
 
     const selectImage = () => {
         try {
@@ -36,32 +41,46 @@ const AdminAddItem = () => {
 
     const addItem = async () => {
         try {
-            const reference = storage().ref('image.jpg');
-            const task = reference.putFile(image);
-            console.log("Uploading ...")
-            task.then(() => {
+            dispatch(setLoadingTrue());
+            const reference = storage().ref(`${restaurant}/${name}.jpg`);
+            await reference.putFile(image)
+            .then(() => {
                 console.log('Image uploaded to the bucket!');
-            });
-            task.catch(() => {
-                console.log('Error while uploading image!');
             })
-            const url = await storage().ref('image.jpg').getDownloadURL();
-            setImage(url)
-            console.log(url);
+            .catch(() => {
+                console.log('Error while uploading image!');
+                dispatch(setErrorMessage("Adding dish failed!!"));
+                return;
+            });
+            const url = await storage().ref(`${restaurant}/${name}.jpg`).getDownloadURL();
+            console.log("Image Uploaded!!");
+            var mess = null
             await firestore()
                 .collection('Restaurant')
-                .doc('1')
+                .doc(restaurant)
                 .update({
-                    menu: firestore.FieldValue.arrayUnion({ name, price, description, category, image, id: 100 })
+                    menu: firestore.FieldValue.arrayUnion({ name, price, description, category, image: url || "", id: url })
                 })
                 .then(() => {
                     console.log("Data updated successfully")
+                    dispatch(setSuccessMessage("Dish added successfully!"));
+                    mess ="Dish added successfully!"
+                    alert(mess)
+                    setName(null)
+                    setDescription(null)
+                    setImage(null)
+                    setPrice(null)
+                    return;
                 })
-                .catch(err => console.log(err));
+                .catch(err => {console.log(err); dispatch(setErrorMessage("Adding dish failed!!")) });
+                if(!mess) alert("Adding dish failed!!")
         } catch (err) {
             console.log(err);
+            dispatch(setErrorMessage("Adding dish failed!!"));
+            alert("Adding dish failed!!")
         }
     }
+
 
     return (
         <ScrollView style={{ marginTop: '20%' }}>
@@ -79,8 +98,9 @@ const AdminAddItem = () => {
                 <View style={[styles.SectionStyle, styles.shadows, my_styles.box]}>
                     <TouchableOpacity style={{ display: 'flex', flexDirection: 'row' }} onPress={selectImage}>
                         <MaterialCommunityIcons name="camera" size={18} color='#F2A253' />
-                        <Text style={{ marginLeft: '4%' }}>Select Image</Text>
+                        <Text style={{ marginLeft: '4%' }}>{image ? 'Selected' :'Select Image'}</Text>
                     </TouchableOpacity>
+                    {image? <Image source={{uri: `file://${image}`}} style={{height: 50, width: 50, borderRadius: 10, marginHorizontal: '10%'}}/> : null}
                 </View>
             </View>
             <View style={{ flexDirection: 'row', display: 'flex' }}>
@@ -115,8 +135,12 @@ const AdminAddItem = () => {
                         style={{ height: 50, width: 150 }}
                         onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
                     >
-                        <Picker.Item label="Italian" value="italian" />
-                        <Picker.Item label="Main Course" value="maincourse" />
+                        <Picker.Item label="Italian" value="Italian" />
+                        <Picker.Item label="Chinese" value="Chinese" />
+                        <Picker.Item label="Beverages" value="Beverages" />
+                        <Picker.Item label="South Indian" value="South Indian" />
+                        <Picker.Item label="Mexican" value="Mexican" />
+                        <Picker.Item label="Others" value="Others" />
                     </Picker>
 
                 </View>

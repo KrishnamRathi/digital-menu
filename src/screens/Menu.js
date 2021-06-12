@@ -51,7 +51,7 @@ const Menu = () => {
     const dispatch = useDispatch();
     const menu = useSelector(state => state.menu.menu);
     const currentCategory = useSelector(state => state.menu.currentCategory);
-    const totalprice = useSelector(state => state.cart.totalprice);
+    const totalprice = useSelector(state => state.cart?.totalprice);
     const [keyword, setKeyword] = useState("");
     const [showfilter, setShowfilter] = useState(false);
     const isAdmin=true

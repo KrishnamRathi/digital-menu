@@ -7,7 +7,7 @@ import CommaSeperator from '../utils/commaSeperator';
 
 const Card = ({ name, desc, price, image, id }) => {
     const dispatch = useDispatch();
-    const item = useSelector(state => state.cart.items.filter((item) => item.id===id))
+    const item = useSelector(state => state.cart?.items?.filter((item) => item.id===id))
     const quantity = item?.length > 0 ? item[0].quantity : 0;
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
